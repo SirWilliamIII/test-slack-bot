@@ -39,6 +39,19 @@ app.command("/random_quote", async({ command, ack, say }) => {
     await say(randomQuote);
 });
 
+// This will match any message that contains 👋
+app.message(':wave:', async({ message, say }) => {
+    // Handle only newly posted messages here
+    await say(`Hello, <@${message.user}>`);
+
+});
+
+// Listens for messages containing "knock knock" and responds with an italicized "who's there?"
+app.message('knock knock', async({ message, say }) => {
+    await say(`_Who's there?_`);
+});
+
+
 (async() => {
     await app.start(PORT);
     console.log(`⚡️ Bolt app is running on port ${PORT}!`);
