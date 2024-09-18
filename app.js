@@ -51,6 +51,27 @@ app.message('knock knock', async({ message, say }) => {
     await say(`_Who's there?_`);
 });
 
+app.message("hey", async({ message, say }) => {
+    // say() sends a message to the channel where the event was triggered
+    await say({
+        blocks: [{
+            type: "section",
+            text: {
+                type: "mrkdwn",
+                text: `Hey there <@${message.user}>!`,
+            },
+            accessory: {
+                type: "button",
+                text: {
+                    type: "plain_text",
+                    text: "Click Me",
+                },
+                action_id: "button_click",
+            },
+        }, ],
+        text: `Hey there <@${message.user}>!`,
+    });
+});
 
 (async() => {
     await app.start(PORT);
